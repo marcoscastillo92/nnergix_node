@@ -20,5 +20,8 @@
     "pg-hstore": "2.3.4",
     "sequelize": "6.33.0"
   },
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "nnergix-cli": "./cli.js"
+  }
 }
