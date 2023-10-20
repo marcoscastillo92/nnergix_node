@@ -16,6 +16,10 @@ routes.forEach((route) => {
 
 db.init(() => {
 	app.listen(port, () => {
-		console.log(`Server listening on port ${port}`);
+		if (process.env.NODE_ENV !== 'test') {
+			console.log(`Server listening on port ${port}`);
+		}
 	});
 });
+
+export default app;

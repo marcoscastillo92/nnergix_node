@@ -16,11 +16,8 @@ export default {
 				return next();
 			}
 
-			return res.send({
-				status: false,
-				error: {
-					message: `Invalid payload: ${ajv.errorsText(validate.errors)}`
-				}
+			return res.status(400).send({
+				error: `Invalid payload: ${ajv.errorsText(validate.errors)}`
 			});
 		};
 	}

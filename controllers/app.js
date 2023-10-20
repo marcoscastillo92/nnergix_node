@@ -5,6 +5,10 @@ export const links = async (req, res) => {
 	const { url } = req.body;
 	const { user } = req;
 
+	if (!url) {
+		return res.status(400).json({ error: 'URL is required' });
+	}
+
 	try {
 		const anchors = await retrieveLinksFromUrl(url, user);
 

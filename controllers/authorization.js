@@ -29,7 +29,7 @@ export const singup = (req, res) => {
 		.then((user) => {
 			const token = generateToken(payload.email, user.id);
 
-			return res.status(200).json({
+			return res.status(201).json({
 				token
 			});
 		})
@@ -46,9 +46,7 @@ export const login = (req, res) => {
 	UserModel.findUser({ email }).then((user) => {
 		if (!user) {
 			return res.status(401).json({
-				error: {
-					message: `User \`${email}\` not found.`
-				}
+				error: `User \`${email}\` not found.`
 			});
 		}
 
@@ -56,9 +54,7 @@ export const login = (req, res) => {
 
 		if (user.password !== hashedPassword) {
 			return res.status(401).json({
-				error: {
-					message: `User \`${email}\` not found.`
-				}
+				error: `User \`${email}\` not found.`
 			});
 		}
 

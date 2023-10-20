@@ -1,16 +1,22 @@
 import models from './models/index.js';
 import Sequelize from 'sequelize';
-import dotenv from 'dotenv';
+import config from './config/config.js';
 
-dotenv.config();
+const sequelizeConfig = config[process.env.NODE_ENV];
+if (!sequelizeConfig) {
+	console.error('Environment not set');
+	process.exit(1);
+}
+
 const sequelize = new Sequelize(
-	process.env.DB_NAME,
-	process.env.DB_USERNAME,
-	process.env.DB_PASSWORD,
+	sequelizeConfig.database,
+	sequelizeConfig.username,
+	sequelizeConfig.password,
 	{
-		dialect: 'postgres',
-		host: process.env.DB_HOST,
-		port: process.env.DB_PORT
+		dialect: sequelizeConfig.dialect,
+		host: sequelizeConfig.host,
+		port: sequelizeConfig.port,
+		logging: process.env.NODE_ENV !== 'test'
 	}
 );
 
@@ -29,5 +35,6 @@ export default {
 				console.error('Sequelize error:', err);
 				process.exit(1);
 			});
-	}
+	},
+	sequelize
 };
