@@ -17,14 +17,8 @@ export const links = async (req, res) => {
 		});
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ error: 'Error al hacer scrapping de la URL' });
+		res.status(500).json({ error: 'Error when scrapping the URL' });
 	}
-};
-
-export const docs = (req, res) => {
-	res.status(200).json({
-		message: 'Welcome to the API!'
-	});
 };
 
 export const retrieveLinksFromUrl = async (url, user) => {

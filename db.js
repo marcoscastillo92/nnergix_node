@@ -16,7 +16,7 @@ const sequelize = new Sequelize(
 		dialect: sequelizeConfig.dialect,
 		host: sequelizeConfig.host,
 		port: sequelizeConfig.port,
-		logging: process.env.NODE_ENV !== 'test'
+		logging: process.env.NODE_ENV !== 'test' ? console.log : false
 	}
 );
 
